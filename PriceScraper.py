@@ -1,41 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-url = "https://www.amazon.ca/"
-# browser = webdriver.Chrome(executable_path = "C:\Users\nsman\Desktop\Amazon Price Scraper")
-# browser = webdriver.Chrome()
-# browser.get(url)
-#driver = webdriver.Chrome(executable_path = 'C:\Users\nsman\Desktop\Amazon Price Scraper')
+#things to add:
+#add user input for item, automate to search for it and grab url, display current price
+#ask to save item to database
 
-#getSearch = input("Please type in an item ")
-get_search = "toaster"
+url = "https://www.amazon.ca/PlayStation-4-Dual-Charging-Dock/dp/B00ENFVJJO/ref=sr_1_10?crid=2FQ1OYX6BS5AJ&keywords=playstation+4&qid=1642393254&sprefix=play%2Caps%2C136&sr=8-10"
+item = "PlayStation 4 Dual Charging Dock"
 
 driver = webdriver.Chrome()
 driver.get(url)
 
-
-search = driver.find_element_by_xpath('//*[@id="twotabsearchtextbox"]')
-search.clear()
-search.send_keys(get_search)
-search.submit()
-
-# price_list = driver.find_elements_by_xpath('//*[@id="search"]/div[1]/div[1]/div/span[3]/div[2]/div[6]/div/span/div/div/div[2]/div[3]/div/a/span/span[1]')
-item_prices = driver.find_elements_by_class_name('a-price')
-
-#price_list = driver.find_element_by_class_name('a-offscreen')
-#price_list = driver.find_element_by_css_selector('#search > div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(12) > div > span > div > div > div:nth-child(3) > div.a-section.a-spacing-none.a-spacing-top-small.s-price-instructions-style > div > a > span > span.a-offscreen')
-# price_list.text
-
-price_list = []
-
-# for x in range(len(price_list)):
-#     price_list.
-
-for price in item_prices:
-    price_list.append(price.text)
-
-print(*price_list)
+price = (driver.find_element_by_xpath('//*[@id="corePrice_desktop"]/div/table/tbody/tr/td[2]/span[1]/span[2]')).text
 
 driver.close()
+
+print(price)
+
 
 
